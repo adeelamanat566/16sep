@@ -33,6 +33,11 @@ pipeline {
             }
         
         }
+        stage('scan') { 
+            steps { 
+                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL ${IMAGE}'
+            } 
+        }
         
         stage('login ecr'){
             steps {
